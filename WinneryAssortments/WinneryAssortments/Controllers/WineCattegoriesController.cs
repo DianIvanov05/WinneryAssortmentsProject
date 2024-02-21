@@ -55,13 +55,15 @@ namespace WinneryAssortments.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,DateModified")] WineCattegory wineCattegory)
         {
-            if (ModelState.IsValid)
+            wineCattegory.DateModified = DateTime.Now;
+            if (!ModelState.IsValid)
             {
-                _context.WineCattegories.Add(wineCattegory);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(wineCattegory);
             }
-            return View(wineCattegory);
+            _context.WineCattegories.Add(wineCattegory);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            
         }
 
         // GET: WineCattegories/Edit/5

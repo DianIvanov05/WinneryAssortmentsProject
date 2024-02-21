@@ -53,15 +53,17 @@ namespace WinneryAssortments.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DateModified")] WineType wineType)
+        public async Task<IActionResult> Create([Bind("Name,DateModified")] WineType wineType)
         {
-            if (ModelState.IsValid)
+            wineType.DateModified = DateTime.Now;
+            if (!ModelState.IsValid)
             {
-                _context.Add(wineType);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(wineType);
             }
-            return View(wineType);
+            _context.WineTypes.Add(wineType);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+            
         }
 
         // GET: WineTypes/Edit/5
@@ -107,6 +109,7 @@ namespace WinneryAssortments.Controllers
                     }
                     else
                     {
+                        wineType.DateModified = DateTime.Now;
                         throw;
                     }
                 }
