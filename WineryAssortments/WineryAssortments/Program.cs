@@ -1,3 +1,4 @@
+using ASPShopBag.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WineryAssortments.Data;
@@ -31,6 +32,7 @@ else
     app.UseHsts();
 }
 
+app.PrepareDataBase().Wait();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
