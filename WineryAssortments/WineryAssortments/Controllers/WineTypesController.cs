@@ -53,14 +53,14 @@ namespace WineryAssortments.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,DateModified")] WineType wineType)
+        public async Task<IActionResult> Create([Bind("Name")] WineType wineType)
         {
             wineType.DateModified = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return View(wineType);
             }
-            _context.Add(wineType);
+            _context.WineTypes.Add(wineType);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
             
@@ -87,7 +87,7 @@ namespace WineryAssortments.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,DateModified")] WineType wineType)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] WineType wineType)
         {
             if (id != wineType.Id)
             {
@@ -98,7 +98,8 @@ namespace WineryAssortments.Controllers
             {
                 try
                 {
-                    _context.Update(wineType);
+                    wineType.DateModified = DateTime.Now;
+                    _context.WineTypes.Update(wineType);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -109,7 +110,6 @@ namespace WineryAssortments.Controllers
                     }
                     else
                     {
-                        wineType.DateModified = DateTime.Now;
                         throw;
                     }
                 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,23 +11,26 @@ using WineryAssortments.Data;
 
 namespace WineryAssortments.Controllers
 {
-    public class WinesController : Controller
+    [Authorize]
+    public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<Customer> _userManager;
 
-        public WinesController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context, UserManager<Customer> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
-        // GET: Wines
+        // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Wines.Include(w => w.WineCattegories).Include(w => w.WineTypes);
+            var applicationDbContext = _context.Orders.Include(o => o.Customers).Include(o => o.Wines);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Wines/Details/5
+        // GET: Orders/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,46 +38,47 @@ namespace WineryAssortments.Controllers
                 return NotFound();
             }
 
-            var wine = await _context.Wines
-                .Include(w => w.WineCattegories)
-                .Include(w => w.WineTypes)
+            var order = await _context.Orders
+                .Include(o => o.Customers)
+                .Include(o => o.Wines)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (wine == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(wine);
+            return View(order);
         }
 
-        // GET: Wines/Create
+        // GET: Orders/Create
         public IActionResult Create()
         {
-            ViewData["WineCattegoriesId"] = new SelectList(_context.WineCattegories, "Id", "Name");
-            ViewData["WineTypesId"] = new SelectList(_context.WineTypes, "Id", "Name");
+            //ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Name");
             return View();
         }
 
-        // POST: Wines/Create
+        // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Price,Description,ImageUrl,WineCattegoriesId,WineTypesId")] Wine wine)
+        public async Task<IActionResult> Create([Bind("WinesId,Quantity")] Order order)
         {
-            wine.DateModified = DateTime.Now;
+            order.DateModified = DateTime.Now;
+            order.CustomersId = _userManager.GetUserId(User);
             if (ModelState.IsValid)
             {
-                _context.Wines.Add(wine);
+                _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["WineCattegoriesId"] = new SelectList(_context.WineCattegories, "Id", "Name", wine.WineCattegoriesId);
-            ViewData["WineTypesId"] = new SelectList(_context.WineTypes, "Id", "Name", wine.WineTypesId);
-            return View(wine);
+            //ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
+            ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Name", order.WinesId);
+            return View(order);
         }
 
-        // GET: Wines/Edit/5
+        // GET: Orders/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,24 +86,24 @@ namespace WineryAssortments.Controllers
                 return NotFound();
             }
 
-            var wine = await _context.Wines.FindAsync(id);
-            if (wine == null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
-            ViewData["WineCattegoriesId"] = new SelectList(_context.WineCattegories, "Id", "Name", wine.WineCattegoriesId);
-            ViewData["WineTypesId"] = new SelectList(_context.WineTypes, "Id", "Name", wine.WineTypesId);
-            return View(wine);
+            ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
+            ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Id", order.WinesId);
+            return View(order);
         }
 
-        // POST: Wines/Edit/5
+        // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,ImageUrl,WineCattegoriesId,WineTypesId")] Wine wine)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,WinesId,CustomersId,Quantity,DateModified")] Order order)
         {
-            if (id != wine.Id)
+            if (id != order.Id)
             {
                 return NotFound();
             }
@@ -106,13 +112,12 @@ namespace WineryAssortments.Controllers
             {
                 try
                 {
-                    wine.DateModified = DateTime.Now;
-                    _context.Wines.Update(wine);
+                    _context.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WineExists(wine.Id))
+                    if (!OrderExists(order.Id))
                     {
                         return NotFound();
                     }
@@ -123,12 +128,12 @@ namespace WineryAssortments.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["WineCattegoriesId"] = new SelectList(_context.WineCattegories, "Id", "Name", wine.WineCattegoriesId);
-            ViewData["WineTypesId"] = new SelectList(_context.WineTypes, "Id", "Name", wine.WineTypesId);
-            return View(wine);
+            ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
+            ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Id", order.WinesId);
+            return View(order);
         }
 
-        // GET: Wines/Delete/5
+        // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,36 +141,36 @@ namespace WineryAssortments.Controllers
                 return NotFound();
             }
 
-            var wine = await _context.Wines
-                .Include(w => w.WineCattegories)
-                .Include(w => w.WineTypes)
+            var order = await _context.Orders
+                .Include(o => o.Customers)
+                .Include(o => o.Wines)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (wine == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return View(wine);
+            return View(order);
         }
 
-        // POST: Wines/Delete/5
+        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var wine = await _context.Wines.FindAsync(id);
-            if (wine != null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order != null)
             {
-                _context.Wines.Remove(wine);
+                _context.Orders.Remove(order);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WineExists(int id)
+        private bool OrderExists(int id)
         {
-            return _context.Wines.Any(e => e.Id == id);
+            return _context.Orders.Any(e => e.Id == id);
         }
     }
 }

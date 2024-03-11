@@ -43,7 +43,7 @@ namespace ASPShopBag.Services
            
                 //Seed Roles
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
-                await roleManager.CreateAsync(new IdentityRole("Client"));
+                await roleManager.CreateAsync(new IdentityRole("Customer"));
             }
 
             public static async Task SeedSuperAdminAsync(UserManager<Customer> userManager)
