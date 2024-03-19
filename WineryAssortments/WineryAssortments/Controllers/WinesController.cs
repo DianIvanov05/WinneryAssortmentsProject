@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -46,6 +47,7 @@ namespace WineryAssortments.Controllers
         }
 
         // GET: Wines/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["WineCattegoriesId"] = new SelectList(_context.WineCattegories, "Id", "Name");
@@ -73,6 +75,7 @@ namespace WineryAssortments.Controllers
         }
 
         // GET: Wines/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -129,6 +132,7 @@ namespace WineryAssortments.Controllers
         }
 
         // GET: Wines/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -26,8 +26,21 @@ namespace WineryAssortments.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.Customers).Include(o => o.Wines);
-            return View(await applicationDbContext.ToListAsync());
+            if (User.IsInRole("Admin"))
+            {
+                var applicationDbConxtext = _context.Orders
+                                    .Include(o => o.Customers)
+                                    .Include(o => o.Wines);
+                return View(await applicationDbConxtext.ToListAsync());
+            }
+            else
+            {
+                var applicationDbConxtext = _context.Orders
+                                    .Include(o => o.Customers)
+                                    .Include(o => o.Wines)
+                                    .Where(x => x.CustomersId == _userManager.GetUserId(User));
+                return View(await applicationDbConxtext.ToListAsync());
+            }
         }
 
         // GET: Orders/Details/5
@@ -56,6 +69,19 @@ namespace WineryAssortments.Controllers
             //ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Name");
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateWithWineId(int productId, int countP)
+        {
+            //int c = int.Parse( ViewBag.counter);
+            //return View();
+            Order order = new Order();
+            order.WinesId = productId;
+            order.Quantity = countP;
+            order.CustomersId = _userManager.GetUserId(User);
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Orders/Create
@@ -91,7 +117,7 @@ namespace WineryAssortments.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
+            //ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
             ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Id", order.WinesId);
             return View(order);
         }
@@ -101,7 +127,7 @@ namespace WineryAssortments.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,WinesId,CustomersId,Quantity,DateModified")] Order order)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,WinesId,Quantity,DateModified")] Order order)
         {
             if (id != order.Id)
             {
@@ -112,7 +138,9 @@ namespace WineryAssortments.Controllers
             {
                 try
                 {
-                    _context.Update(order);
+                    order.CustomersId = _userManager.GetUserId(User);
+                    order.DateModified = DateTime.Now;
+                    _context.Orders.Update(order);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -128,7 +156,7 @@ namespace WineryAssortments.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
+            //ViewData["CustomersId"] = new SelectList(_context.Users, "Id", "Id", order.CustomersId);
             ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Id", order.WinesId);
             return View(order);
         }
