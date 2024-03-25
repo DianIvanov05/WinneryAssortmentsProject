@@ -3,73 +3,129 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+    #Heading{
+        text-align:center;
+    }
+    .buttons {
+        display:flex;
+        flex-direction:column;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        width: 280px;
+        
+    }
+    .buttons #buyBtn{
+        width:240px;
+    }
 
-<h1>Вина</h1>
+        .buttons a {
+            margin: 3px 0px;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateModified)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WineCattegories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WineTypes)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                    <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="80"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WineCattegories.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WineTypes.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    <form method="post" asp-controller="Orders" asp-action="Create" asp-route-WinesId="@item.Id">
-                  <input name="countP" id="ccount" type="number" width="3" value="1" style="color:black; font:bold" /> Броя
-                  <input type="submit" value="Купи" />
-                  </form>
-            </td>
-        </tr>
+    .wines-container {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .wines:hover{
+        box-shadow: 0 0 10px 2px #868686;
+    }
+
+    .wines {
+        border: 3px solid #959593;
+        width: 30%;
+        border-radius: 10px;
+        display: flex;
+        font-family: 'Comic Sans MS';
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+
+        .wines img {
+            max-width: 100%;
+            height: 250px;
+            object-fit: contain;
+        }
+
+
+    .wine-description {
+        display: inline-flex;
+        flex-direction: row;
+        padding: 10px;
+    }
+
+    .col-sm-10 {
+        width: 50%;
+    }
+
+    .col-sm-2 {
+        width: 50%;
+    }
+    hr{
+        border-top: 2px solid black;
+    }
+
+</style>
+    <h1 id="Heading">Най-добрите асортименти на Винарна „Асорти“</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай ново вино</a></div></center>
 }
-    </tbody>
-</table>
+<hr />
+<div class="wines-container">
+    @foreach (var item in Model)
+    {
+
+        <div class="wines">
+            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
+            <div class="wine-description">
+                <div>
+                    <div>                      
+                        <dl class="row" style="position: relative;">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Name) 
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Price)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Price) <span>лв</span>
+                            </dd>                                                       
+                        </dl>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="buttons">
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий виното</a>
+                        </div>
+                    }
+                    @if (!User.IsInRole("Admin"))
+                    {
+                        <div class="buttons" >
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-info">Детайли</a>
+                            <form method="post" asp-controller="Orders" asp-action="Create" asp-route-WinesId="@item.Id">
+                                <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" /> 
+                                <input id="buyBtn" type="submit" value="Купи" class="btn btn-primary" />
+                            </form>
+                        </div>
+                     
+                       
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -17,7 +17,7 @@ namespace WineryAssortments.Data
         [DisplayName("Количество")]
         public int Quantity { get; set; }
 
-        [DisplayName("Дата на промяна")]
+        [DisplayName("Дата на поръчка")]
         public DateTime DateModified { get; set; } = DateTime.Now;
     }
 }

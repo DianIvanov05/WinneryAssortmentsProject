@@ -18,5 +18,48 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    
+}
+#imageContainer img {
+    overflow: hidden;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+#imageContainer p {
+    position: absolute;
+    top: 10%;
+    left: 52.5%;
+    text-align: center;
+    padding: 10px 20px;
+    color: white;
+    font-size: 25px;
+    font-family: 'Comic Sans MS', Times, serif;
+    transform: translate(-50%, -50%);
+    background-color:black;
+}
+hr {
+    border-top: 2px solid black;
+}
+#aboutUsContainer{
+    height:auto;
+}
+#aboutUsContainer h1 {
+    text-align: center;
+}
+    #aboutUsContainer img {
+        margin-right: 85px;
+        width: 49%;
+        height: auto;
+        float: left;
+        border-radius: 3px;
+    }
+#aboutUsContainer p {
+    float: right;
+    width: 484px;
+    font-size: 17px;
+    text-align: justify;
 }
