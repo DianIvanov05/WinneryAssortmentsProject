@@ -44,22 +44,24 @@ body {
 hr {
     border-top: 2px solid black;
 }
-#aboutUsContainer{
+.aboutusImage{
+    width:50%;
+}
+.aboutusImage img{
+    max-width:100%;
     height:auto;
 }
-#aboutUsContainer h1 {
-    text-align: center;
+#aboutUsContainer{
+    display:flex;
 }
-    #aboutUsContainer img {
-        margin-right: 85px;
-        width: 49%;
-        height: auto;
-        float: left;
-        border-radius: 3px;
-    }
-#aboutUsContainer p {
-    float: right;
-    width: 484px;
-    font-size: 17px;
-    text-align: justify;
+.aboutusText{
+    width:50%;
+    padding:15px;
+    text-align:justify;
+}
+.aboutusText p{
+    font-size:18px;
+}
+h1{
+    text-align:center;
 }

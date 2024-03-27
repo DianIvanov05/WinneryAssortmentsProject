@@ -1,16 +1,30 @@
 ﻿@page
 @model LoginModel
 
-    @{
-        ViewData["Title"] = "Вход";
+@{
+    ViewData["Title"] = "Вход";
+}
+<style>
+    .center{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        min-height:75vh;   
     }
+    form{
+        border:1px solid black;
+        padding:20px;
+       
+    }
+</style>
+<center><h1>@ViewData["Title"]</h1></center>
+<div class="center">
 
-    <h1>@ViewData["Title"]</h1>
-    <div class="row">
-        <div class="col-md-4">
+    <div>
+        <div class="row">
             <section>
+                <hr />
                 <form id="account" method="post">
-                    <hr />
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                     <div class="form-floating mb-3">
                         <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username..." />
@@ -50,9 +64,10 @@
         <div class="col-md-6 col-md-offset-2">
         </div>
     </div>
+</div>
 
-    @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
-    }
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 

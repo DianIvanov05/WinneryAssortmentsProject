@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Wine</h4>
+<h1>Добави ново вино</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -38,11 +36,11 @@
                 <span asp-validation-for="DateModified" class="text-danger"></span>
             </div> *@
             <div class="form-group">
-                <label asp-for="WineCattegoriesId" class="control-label"></label>
+                <label asp-for="WineCattegoriesId" class="control-label">Категория на виното</label>
                 <select asp-for="WineCattegoriesId" class ="form-control" asp-items="ViewBag.WineCattegoriesId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="WineTypesId" class="control-label"></label>
+                <label asp-for="WineTypesId" class="control-label">Вид на виното</label>
                 <select asp-for="WineTypesId" class ="form-control" asp-items="ViewBag.WineTypesId"></select>
             </div>
             <div class="form-group">
