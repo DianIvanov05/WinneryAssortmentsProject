@@ -1,26 +1,26 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     margin-bottom: 60px;
-    
 }
+
 #imageContainer img {
     overflow: hidden;
     justify-content: center;
@@ -39,29 +39,57 @@ body {
     font-size: 25px;
     font-family: 'Comic Sans MS', Times, serif;
     transform: translate(-50%, -50%);
-    background-color:black;
+    background-color: black;
 }
+
 hr {
     border-top: 2px solid black;
 }
-.aboutusImage{
-    width:50%;
+
+.aboutusImage {
+    width: 50%;
 }
-.aboutusImage img{
-    max-width:100%;
-    height:auto;
+
+    .aboutusImage img {
+        max-width: 100%;
+        height: auto;
+    }
+
+#aboutUsContainer {
+    display: flex;
 }
-#aboutUsContainer{
+
+.aboutusText {
+    width: 50%;
+    padding: 15px;
+    text-align: justify;
+}
+
+    .aboutusText p {
+        font-size: 18px;
+    }
+
+h1 {
+    text-align: center;
+}
+
+.degustationImage {
+    width: 50%;
+}
+.degustationImage img {
+     max-width: 100%;
+     height: auto;
+     border-radius:1%;
+}
+#degustation{
     display:flex;
 }
-.aboutusText{
-    width:50%;
-    padding:15px;
-    text-align:justify;
+.degustationText {
+    width: 50%;
+    padding: 15px;
+    text-align: justify;
 }
-.aboutusText p{
-    font-size:18px;
-}
-h1{
-    text-align:center;
-}
+
+    .degustationText p {
+        font-size: 18px;
+    }

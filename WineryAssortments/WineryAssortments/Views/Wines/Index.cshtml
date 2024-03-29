@@ -4,12 +4,13 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    #Heading{
-        text-align:center;
+    #Heading {
+        text-align: center;
     }
+
     .buttons {
-        display:flex;
-        flex-direction:column;
+        display: flex;
+        flex-direction: column;
         color: white;
         padding: 12px 20px;
         border: none;
@@ -17,11 +18,11 @@
         cursor: pointer;
         text-align: center;
         width: 280px;
-        
     }
-    .buttons #buyBtn{
-        width:240px;
-    }
+
+        .buttons #buyBtn {
+            width: 240px;
+        }
 
         .buttons a {
             margin: 3px 0px;
@@ -34,7 +35,7 @@
         justify-content: space-evenly;
     }
 
-    .wines:hover{
+    .wines:hover {
         box-shadow: 0 0 10px 2px #868686;
     }
 
@@ -68,12 +69,13 @@
     .col-sm-2 {
         width: 50%;
     }
-    hr{
+
+    hr {
         border-top: 2px solid black;
     }
 
 </style>
-    <h1 id="Heading">Най-добрите асортименти на Винарна „Асорти“</h1>
+<h1 id="Heading">Най-добрите асортименти на Винарна „Асорти“</h1>
 
 @if (User.IsInRole("Admin"))
 {
@@ -88,20 +90,20 @@
             <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
             <div class="wine-description">
                 <div>
-                    <div>                      
+                    <div>
                         <dl class="row" style="position: relative;">
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Name)
                             </dt>
                             <dd class="col-sm-10">
-                                @Html.DisplayFor(model => item.Name) 
+                                @Html.DisplayFor(model => item.Name)
                             </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Price)
                             </dt>
                             <dd class="col-sm-10">
                                 @Html.DisplayFor(model => item.Price) <span>лв</span>
-                            </dd>                                                       
+                            </dd>
                         </dl>
                     </div>
                     @if (User.IsInRole("Admin"))
@@ -113,16 +115,16 @@
                         </div>
                     }
                     @if (!User.IsInRole("Admin"))
-                    {
-                        <div class="buttons" >
-                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-info">Детайли</a>
-                            <form method="post" asp-controller="Orders" asp-action="Create" asp-route-WinesId="@item.Id">
-                                <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" /> 
-                                <input id="buyBtn" type="submit" value="Купи" class="btn btn-primary" />
+                    {                    
+                        <div class="buttons">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Детайли</a>
+                            <form method="post" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.Id">
+                                <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" />
+                                <input id="buyBtn" type="submit" value="Поръчай" class="btn btn-primary" />
                             </form>
                         </div>
-                     
-                       
+
+
                     }
                 </div>
             </div>

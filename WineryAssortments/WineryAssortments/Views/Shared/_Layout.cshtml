@@ -26,6 +26,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Wines" asp-action="Index">Винен лист</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Промоции</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Degustation">Дегустация</a>
+                        </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
@@ -34,6 +40,9 @@
                             </li>
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="WineTypes" asp-action="Index">Видове вина</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Поръчки</a>
                             </li>
                         }
                     </ul>

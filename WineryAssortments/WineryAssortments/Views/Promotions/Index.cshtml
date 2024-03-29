@@ -1,17 +1,10 @@
-﻿@model IEnumerable<WineryAssortments.Data.Order>
+﻿@model IEnumerable<WineryAssortments.Data.Promotion>
 
 @{
     ViewData["Title"] = "Index";
 }
-@if (User.IsInRole("Admin"))
-{
-    <h1>Поръчки</h1>
-}
-@if (!User.IsInRole("Admin"))
-{
-    <h1>Потребителска кошница</h1>
-}
 
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -23,15 +16,17 @@
                 @Html.DisplayNameFor(model => model.Wines)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customers)
+                @Html.DisplayNameFor(model => model.PromotionPercent)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+                @Html.DisplayNameFor(model => model.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateModified) 
+                @Html.DisplayNameFor(model => model.EndDate)
             </th>
-            <th>Обща цена: </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateModified)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -39,20 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Wines.Name)
+                @Html.DisplayFor(modelItem => item.Wines.Id)
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.Customers.UserName) *@
-                @item.Customers.FirstName @item.Customers.LastName
+                @Html.DisplayFor(modelItem => item.PromotionPercent)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
+                @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateModified) 
+                @Html.DisplayFor(modelItem => item.EndDate)
             </td>
             <td>
-                    @(item.Wines.Price * item.Quantity) лв.
+                @Html.DisplayFor(modelItem => item.DateModified)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

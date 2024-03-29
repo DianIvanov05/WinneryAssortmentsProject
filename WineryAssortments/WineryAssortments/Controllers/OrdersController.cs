@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using WineryAssortments.Data;
 
@@ -71,14 +72,16 @@ namespace WineryAssortments.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateWithWineId(int productId, int countP)
+        public async Task<IActionResult> CreateWithWineId([Bind("WinesId, Quantity")]int wineId, int countP)
         {
-            //int c = int.Parse( ViewBag.counter);
-            //return View();
+            var currentWine = await _context.Wines.FirstOrDefaultAsync(z => z.Id == wineId);
             Order order = new Order();
-            order.WinesId = productId;
+            //order.ProductsId = productId;
+            // productId = order.ProductsId;
+            order.WinesId = wineId;
             order.Quantity = countP;
             order.CustomersId = _userManager.GetUserId(User);
+            var price = countP * currentWine.Price;
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
