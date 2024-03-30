@@ -76,14 +76,17 @@ h1 {
 .degustationImage {
     width: 50%;
 }
-.degustationImage img {
-     max-width: 100%;
-     height: auto;
-     border-radius:1%;
+
+    .degustationImage img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 1%;
+    }
+
+#degustation {
+    display: flex;
 }
-#degustation{
-    display:flex;
-}
+
 .degustationText {
     width: 50%;
     padding: 15px;
@@ -93,3 +96,167 @@ h1 {
     .degustationText p {
         font-size: 18px;
     }
+
+.contactUs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+    .contactUs .FirstForm fieldset {
+        font-family: cursive;
+        font-weight: 400;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        backdrop-filter: blur(4px);
+        width: 100%;
+        height:auto;
+    }
+
+    .contactUs .FirstForm .formLabel {
+        color: #ccad00
+    }
+
+    .contactUs .SecondForm fieldset {
+        font-family: cursive;
+        font-weight: 400;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        backdrop-filter: blur(4px);
+        width: 90%;
+        height: auto;
+    }
+
+    .contactUs .SecondForm input[type=submit] {
+        background-color: dodgerblue;
+        color: white;
+        padding: 7px 7px;
+        cursor: pointer;
+        border-radius: 3%;
+        width: 35%;
+        text-align: center;
+        position: fixed;
+        left: 30%;
+        right: 35%;
+        top: 89%;
+    }
+
+    .contactUs .SecondForm input[type=text], select {
+        width: 100%;
+        height:auto;
+        padding: 12px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        resize: vertical
+    }
+
+    .contactUs .SecondForm textarea {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical
+    }
+    .contactUs .SecondForm input[type=submit]:hover {
+        background-color: royalblue;
+    }
+
+    .contactUs .ThirdForm fieldset {
+        font-family: cursive;
+        font-weight: 400;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        backdrop-filter: blur(4px);
+        width: 75%;
+        height:auto;
+    }
+        .contactUs .ThirdForm iframe {
+            height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            
+        }
+#Heading {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    width: 280px;
+}
+
+    .buttons #buyBtn {
+        width: 240px;
+    }
+
+    .buttons a {
+        margin: 3px 0px;
+    }
+
+.wines-container {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.wines:hover {
+    box-shadow: 0 0 10px 2px #868686;
+}
+
+.wines {
+    border: 3px solid #959593;
+    width: 30%;
+    border-radius: 10px;
+    display: flex;
+    font-family: 'Comic Sans MS';
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+    .wines img {
+        max-width: 100%;
+        height: 250px;
+        object-fit: contain;
+    }
+
+
+.wine-description {
+    display: inline-flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.col-sm-10 {
+    width: 50%;
+}
+
+.col-sm-2 {
+    width: 50%;
+}
+
+hr {
+    border-top: 2px solid black;
+}
