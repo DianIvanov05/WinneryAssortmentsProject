@@ -100,11 +100,11 @@ h1 {
 .contactUs {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: space-around;
 }
 
     .contactUs .FirstForm fieldset {
+       
         font-family: cursive;
         font-weight: 400;
         border-radius: 15px;
@@ -115,7 +115,7 @@ h1 {
         margin-right: auto;
         backdrop-filter: blur(4px);
         width: 100%;
-        height:auto;
+        height: 91%;
     }
 
     .contactUs .FirstForm .formLabel {
@@ -132,8 +132,9 @@ h1 {
         margin-left: auto;
         margin-right: auto;
         backdrop-filter: blur(4px);
-        width: 90%;
+        width: 95%;
         height: auto;
+        
     }
 
     .contactUs .SecondForm input[type=submit] {
@@ -178,10 +179,8 @@ h1 {
         background-color: #f2f2f2;
         padding: 20px;
         justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
         backdrop-filter: blur(4px);
-        width: 75%;
+        width: 56%;
         height:auto;
     }
         .contactUs .ThirdForm iframe {
@@ -259,4 +258,18 @@ h1 {
 
 hr {
     border-top: 2px solid black;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+#account {
+    border: 1px solid black;
+    padding: 20px;
+}
+#registerForm {
+    border: 1px solid black;
+    padding: 20px;
 }
