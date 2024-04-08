@@ -11,27 +11,25 @@
 {
     <h1>Потребителска кошница</h1>
 }
-
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Wines)
+                Поръчано вино
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customers)
-            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Customers)
+                </th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateModified) 
             </th>
-            <th>Обща цена: </th>
+            <th>Обща цена </th>
             <th></th>
         </tr>
     </thead>
@@ -39,14 +37,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Wines.Name)
+                <a asp-action="Details" asp-route-id="@item.Id"><img src="@Html.DisplayFor(modelItem => item.Wines.ImageUrl)" width="65" /></a>
             </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @* @Html.DisplayFor(modelItem => item.Customers.UserName) *@
+                        @item.Customers.FirstName @item.Customers.LastName
+                    </td>
+                }
+
             <td>
-                @* @Html.DisplayFor(modelItem => item.Customers.UserName) *@
-                @item.Customers.FirstName @item.Customers.LastName
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
+                @Html.DisplayFor(modelItem => item.Quantity) броя
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateModified) 

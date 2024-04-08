@@ -71,8 +71,8 @@ namespace WineryAssortments.Controllers
             ViewData["WinesId"] = new SelectList(_context.Wines, "Id", "Name");
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateWithWineId([Bind("WinesId, Quantity")]int wineId, int countP)
+      
+        public async Task<IActionResult> CreateWithWineId(int wineId, int countP)
         {
             var currentWine = await _context.Wines.FirstOrDefaultAsync(z => z.Id == wineId);
             Order order = new Order();

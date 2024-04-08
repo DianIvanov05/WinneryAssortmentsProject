@@ -43,14 +43,27 @@
                         </div>
                     }
                     @if (!User.IsInRole("Admin"))
-                    {                    
+                    {
                         <div class="buttons">
                             <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Детайли</a>
-                            <form method="post" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.Id">
+                            <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.Id">
+                                <input name="wineId" type="hidden" value="@item.Id" />
                                 <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" />
                                 <input id="buyBtn" type="submit" value="Поръчай" class="btn btn-primary" />
                             </form>
+                            <script>
+                                document.querySelector("form").addEventListener("submit", function (e) {
+                                    e.preventDefault(); // Предотвратява изпращането на стандартната POST заявка
+
+                                    var inputDataValue = document.getElementById("countP").value; // Взема стойността на текстовото поле
+
+                                    window.location.href = '@Url.Action("CreateWithWineId", "Orders")?countP=' + inputDataValue
+                                        + '&wineId=' + @item.Id;
+                                    // Пренасочва към контролера и действието с подадената стойност на текстовото поле като параметър
+                                });
+                            </script>
                         </div>
+                 
 
 
                     }
