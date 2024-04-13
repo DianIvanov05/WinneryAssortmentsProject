@@ -22,7 +22,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
-                
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Wines" asp-action="Index">Винен лист</a>
                         </li>
@@ -64,10 +64,49 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - WineryAssortments - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer text-muted" style="bottom: auto;">
+        <div class="footer-info">
+            <div class="socials-title">
+                <span class="InfoTitle">КОНТАКТИ:</span>
+                <div class="socials">
+                    <div class="contactsContainer">
+                        <div class="socials-text"><span class="contactsMainText">Телефон:</span> <span class="contactsText" style="font-family: cursive;">+359 823 532 134</span></div>                 
+                    </div>
+                </div>
+                <div class="socials">
+                    <div class="contactsContainer">
+                        <div class="socials-text"><span class="contactsMainText">Email:</span> <span class="contactsText" style="font-family: cursive;">WineryAssortments@gmail.com</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="footer-info">
+            <div class="socials-title">
+                <span class="InfoTitle">ИНФОРМАЦИЯ:</span>
+                <div class="socials">
+                    <div class="contactsContainer">
+                        <div class="socials-text"><a class="contactsMainText" asp-area="" asp-controller="Home" asp-action="Index">За нас</a></div>
+                    </div>
+                    <div class="socials">
+                        <div class="contactsContainer">
+                            <div class="socials-text"><span class="contactsMainText">Адрес:</span> <span class="contactsText">град Сопот, България</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-info">
+            <div class="socials-title">
+                <span class="InfoTitle">ПОСЛЕДВАЙТЕ НИ В:</span>
+                <div class="socials">
+                    <div class="socialMediaImg">
+                        <div class="SocialMediaIcons"><a href="https://instagram.com"><img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" /></a></div>
+                        <div class="SocialMediaIcons"><a href="https://www.facebook.com"><img src="https://seeklogo.com/images/F/facebook-icon-black-logo-133935095E-seeklogo.com.png" /></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -273,3 +273,57 @@ hr {
     border: 1px solid black;
     padding: 20px;
 }
+footer {
+    background-color: #E1E1E1;
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 8px 16px;
+    position: absolute;
+    top: 100%;
+    flex-wrap: wrap;
+}
+.InfoTitle {
+    color:black;
+    text-justify:auto;
+    font-size:120%
+}
+.contactsMainText {
+    font-family: cursive;
+    color: #424242;
+    text-decoration: none;
+}
+
+ 
+.contactsText {
+    font-family: cursive;
+}
+.socialMediaImg{
+    display:flex;
+    justify-content:space-around;
+}
+    .socialMediaImg img {
+        width:50px;
+    }
+.contactsContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.socials-title {
+    display: flex;
+    flex-direction: column;
+}
+.GalleryImages{
+    display:flex;
+    flex-direction:row;
+    width:50%;
+}
+.GalleryImages img{
+    width:70%;
+    height:auto;
+    justify-content:space-around;
+    border:1px;
+    border-radius:3%;
+    padding:1%;
+}
