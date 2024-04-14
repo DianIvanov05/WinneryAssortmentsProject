@@ -31,7 +31,7 @@ body {
 
 #imageContainer p {
     position: absolute;
-    top: 10%;
+    top: 6%;
     left: 52.5%;
     text-align: center;
     padding: 10px 20px;
@@ -104,7 +104,6 @@ h1 {
 }
 
     .contactUs .FirstForm fieldset {
-       
         font-family: cursive;
         font-weight: 400;
         border-radius: 15px;
@@ -134,7 +133,6 @@ h1 {
         backdrop-filter: blur(4px);
         width: 95%;
         height: auto;
-        
     }
 
     .contactUs .SecondForm input[type=submit] {
@@ -153,7 +151,7 @@ h1 {
 
     .contactUs .SecondForm input[type=text], select {
         width: 100%;
-        height:auto;
+        height: auto;
         padding: 12px;
         border: 1px solid #ccc;
         box-sizing: border-box;
@@ -168,6 +166,7 @@ h1 {
         margin-bottom: 16px;
         resize: vertical
     }
+
     .contactUs .SecondForm input[type=submit]:hover {
         background-color: royalblue;
     }
@@ -181,15 +180,16 @@ h1 {
         justify-content: center;
         backdrop-filter: blur(4px);
         width: 56%;
-        height:auto;
+        height: auto;
     }
-        .contactUs .ThirdForm iframe {
-            height: 100%;
-            width: 100%;
-            left: 0;
-            top: 0;
-            
-        }
+
+    .contactUs .ThirdForm iframe {
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+
 #Heading {
     text-align: center;
 }
@@ -259,12 +259,14 @@ h1 {
 hr {
     border-top: 2px solid black;
 }
+
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 75vh;
 }
+
 #account {
     border: 1px solid black;
     padding: 20px;
@@ -272,6 +274,11 @@ hr {
 #registerForm {
     border: 1px solid black;
     padding: 20px;
+}
+
+
+form {
+    opacity: 0.75;
 }
 footer {
     background-color: #E1E1E1;
@@ -283,28 +290,33 @@ footer {
     top: 100%;
     flex-wrap: wrap;
 }
+
 .InfoTitle {
-    color:black;
-    text-justify:auto;
-    font-size:120%
+    color: black;
+    text-justify: auto;
+    font-size: 120%
 }
+
 .contactsMainText {
     font-family: cursive;
     color: #424242;
     text-decoration: none;
 }
 
- 
+
 .contactsText {
     font-family: cursive;
 }
-.socialMediaImg{
-    display:flex;
-    justify-content:space-around;
+
+.socialMediaImg {
+    display: flex;
+    justify-content: space-around;
 }
+
     .socialMediaImg img {
-        width:50px;
+        width: 50px;
     }
+
 .contactsContainer {
     display: flex;
     flex-direction: row;
@@ -314,16 +326,21 @@ footer {
     display: flex;
     flex-direction: column;
 }
-.GalleryImages{
-    display:flex;
-    flex-direction:row;
-    width:50%;
+
+.GalleryImages {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
 }
-.GalleryImages img{
-    width:70%;
-    height:auto;
-    justify-content:space-around;
-    border:1px;
-    border-radius:3%;
-    padding:1%;
-}
+
+    .GalleryImages img {
+        width: 70%;
+        height: auto;
+        justify-content: space-around;
+        border: 1px;
+        border-radius: 3%;
+        padding: 1%;
+    }
+    .GalleryImages img:hover {
+        box-shadow: 0 0 5px 1px #333333;
+    }

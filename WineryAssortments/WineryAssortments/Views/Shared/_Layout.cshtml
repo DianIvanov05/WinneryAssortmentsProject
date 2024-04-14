@@ -19,30 +19,26 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Wines" asp-action="Index">Винен лист</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Промоции</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Degustation">Дегустация</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a>
-                        </li>
-                        <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Потребителска кошница</a>
-                        </li>
-
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="WineCattegories" asp-action="Index">Категории на вината</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Wines" asp-action="Index">Винен лист</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Промоции</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Degustation">Дегустация</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="WineCattegories" asp-action="Index">Категории вина</a>
 
                             </li>
                             <li>
@@ -50,6 +46,28 @@
                             </li>
                             <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Поръчки</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Wines" asp-action="Index">Винен лист</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Промоции</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Degustation">Дегустация</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Потребителска кошница</a>
                             </li>
                         }
                     </ul>
@@ -70,7 +88,7 @@
                 <span class="InfoTitle">КОНТАКТИ:</span>
                 <div class="socials">
                     <div class="contactsContainer">
-                        <div class="socials-text"><span class="contactsMainText">Телефон:</span> <span class="contactsText" style="font-family: cursive;">+359 823 532 134</span></div>                 
+                        <div class="socials-text"><span class="contactsMainText">Телефон:</span> <span class="contactsText" style="font-family: cursive;">+359 823 532 134</span></div>
                     </div>
                 </div>
                 <div class="socials">
@@ -106,7 +124,7 @@
                 </div>
             </div>
         </div>
-     
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -4,11 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Промоции на вино</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай нова промоция</a></div></center>
+     
+}
+
 <table class="table">
     <thead>
         <tr>
