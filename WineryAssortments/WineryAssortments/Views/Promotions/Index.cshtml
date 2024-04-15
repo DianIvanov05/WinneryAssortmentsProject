@@ -12,7 +12,7 @@
      
 }
 
-<table class="table">
+@* <table class="table">
     <thead>
         <tr>
             <th>
@@ -72,4 +72,57 @@
             </tr>
         }
     </tbody>
-</table>
+</table> *@
+<hr />
+<div class="wines-container">
+    @foreach (var item in Model)
+    {
+        <div class="wines">
+            <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span> 
+            <span class="Promotion">@Html.DisplayFor(modelItem => item.PromotionPercent) %</span>
+            <img src="@(item.Wines.ImageUrl)" />
+            <div class="wine-description">
+                <div>
+                    <div>
+                        <dl class="row" style="position: relative;">
+
+                            <dt class="PromotionText">
+                                Стара цена:
+                            </dt>
+                            <dd class="oldPrice">
+                                @Html.DisplayFor(model => item.Wines.Price) <span>лв</span>
+                            </dd>
+                            <dt class="PromotionText">
+                                Нова цена:
+                            </dt>
+                            <dd class="newPrice">
+                                @(item.Wines.Price - item.Wines.Price / 100 - item.PromotionPercent) лв.
+                            </dd>                                                                   
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.StartDate):
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.EndDate):
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </dd>
+                        </dl>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="buttons">
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий промоцията</a>
+                        </div>
+                    }
+                
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -255,7 +255,26 @@ h1 {
 .col-sm-2 {
     width: 50%;
 }
-
+.oldPrice {
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+    width: 50%;
+}
+.PromotionText {
+    width: 50%;
+}
+.Promotion {
+    border: 4px solid red;
+    background-color: yellow;
+    width: 20%;
+}
+.wine-name {
+    width: 50%;
+    
+}
+.newPrice {
+    width: 50%;
+}
 hr {
     border-top: 2px solid black;
 }
@@ -302,6 +321,7 @@ footer {
     color: #424242;
     text-decoration: none;
 }
+  
 
 
 .contactsText {
