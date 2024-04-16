@@ -4,6 +4,23 @@
 @{
     ViewData["Title"] = "Вход";
 }
+<style>
+    body {
+        background-image: url(https://info.vincarta.com/hubfs/Imported_Blog_Media/AdobeStock_90529653.jpeg);
+        background-repeat: no-repeat;
+    }
+
+    form {
+        backdrop-filter: blur(25px);
+    }
+        form a {
+            display:flex;
+            justify-content:center;
+            text-decoration: none;
+            color: dodgerblue;
+        }
+
+</style>
 <center><h1>@ViewData["Title"]</h1></center>
 <div class="center">
 
@@ -34,14 +51,11 @@
                     </div>
                     <div>
                         <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
-                        </p>
-                        <p>
                             <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
                         </p>
                         <p>
-                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати потвърждение на имейл</a>
-                        </p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола</a>
+                        </p>                                 
                     </div>
 
                     <hr />

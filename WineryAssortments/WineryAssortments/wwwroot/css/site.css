@@ -233,6 +233,7 @@ h1 {
     font-family: 'Comic Sans MS';
     flex-direction: column;
     margin-bottom: 15px;
+    position:relative;
 }
 
     .wines img {
@@ -264,13 +265,23 @@ h1 {
     width: 50%;
 }
 .Promotion {
+    position:absolute;
+    top:0%;
+    right:0%;
+    left:80%;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:2px 2px 2px black;
     border: 4px solid red;
     background-color: yellow;
-    width: 20%;
+    transform:rotate(17.5deg);
+}
+.btnDiv{
+    display:flex;
+    justify-content:center;
 }
 .wine-name {
-    width: 50%;
-    
+    text-align:center;
 }
 .newPrice {
     width: 50%;
@@ -287,18 +298,14 @@ hr {
 }
 
 #account {
-    border: 1px solid black;
+
     padding: 20px;
 }
 #registerForm {
-    border: 1px solid black;
-    padding: 20px;
+     padding: 20px;
 }
 
 
-form {
-    opacity: 0.75;
-}
 footer {
     background-color: #E1E1E1;
     border-top: 1px solid black;
@@ -321,9 +328,6 @@ footer {
     color: #424242;
     text-decoration: none;
 }
-  
-
-
 .contactsText {
     font-family: cursive;
 }

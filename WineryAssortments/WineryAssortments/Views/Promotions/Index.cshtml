@@ -9,7 +9,7 @@
 @if (User.IsInRole("Admin"))
 {
     <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай нова промоция</a></div></center>
-     
+
 }
 
 @* <table class="table">
@@ -78,8 +78,8 @@
     @foreach (var item in Model)
     {
         <div class="wines">
-            <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span> 
-            <span class="Promotion">@Html.DisplayFor(modelItem => item.PromotionPercent) %</span>
+            <span class="Promotion">- @Html.DisplayFor(modelItem => item.PromotionPercent) %</span>
+            <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span>          
             <img src="@(item.Wines.ImageUrl)" />
             <div class="wine-description">
                 <div>
@@ -96,8 +96,13 @@
                                 Нова цена:
                             </dt>
                             <dd class="newPrice">
-                                @(item.Wines.Price - item.Wines.Price / 100 - item.PromotionPercent) лв.
-                            </dd>                                                                   
+                                @{
+                                    decimal percent = 0;
+                                    decimal pr = Convert.ToDecimal(item.PromotionPercent * 0.01);
+                                    percent = Convert.ToDecimal(item.Wines.Price - @pr * item.Wines.Price);
+                                    <p>@Math.Round(percent, 2) лв.</p>
+                                }
+                            </dd>
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.StartDate):
                             </dt>
@@ -114,13 +119,16 @@
                     </div>
                     @if (User.IsInRole("Admin"))
                     {
-                        <div class="buttons">
-                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий промоцията</a>
+                        <div class="btnDiv">
+                            <div class="buttons">
+                                <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий промоцията</a>
+                            </div>
                         </div>
+                    
                     }
-                
+
                 </div>
             </div>
         </div>
