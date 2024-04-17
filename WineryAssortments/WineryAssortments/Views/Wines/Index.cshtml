@@ -15,64 +15,45 @@
     {
 
         <div class="wines">
-            <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" />
+            <a asp-action="Details" asp-route-id="@item.Id"><div class="wineImg"><img src="@Html.DisplayFor(modelItem => item.ImageUrl)" /> </div></a>
             <div class="wine-description">
                 <div>
                     <div>
-                        <dl class="row" style="position: relative;">
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.Name)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => item.Name)
-                            </dd>
-                            <dt class="col-sm-2">
-                                @Html.DisplayNameFor(model => model.Price)
-                            </dt>
-                            <dd class="col-sm-10">
-                                @Html.DisplayFor(model => item.Price) <span>лв</span>
-                            </dd>
+                        <dl class="row" style="position: relative;">    
+                            <div class="description">
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => item.Name)
+                                </dd>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(model => item.Price) <span>лв</span>
+                                </dd>
+                            </div>                 
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <div class="btnDiv">
+                                    <div class="buttons">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий виното</a>
+                                    </div>
+                                </div>
+                            }
+                            @if (!User.IsInRole("Admin"))
+                            {
+                                <div class="btnDiv">
+                                    <div class="buttons">
+                                        <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.Id">
+                                            <input name="wineId" type="hidden" value="@item.Id" />
+                                            <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" />
+                                            <input id="buyBtn" type="submit" value="Поръчай &#128722;" class="btn btn-primary" />
+                                        </form>
+
+                                    </div>
+                                </div>
+                            }
                         </dl>
                     </div>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="btnDiv">
-                            <div class="buttons">
-                                <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
-                                <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий виното</a>
-                            </div>
-                        </div>
-                       
-                    }
-                    @if (!User.IsInRole("Admin"))
-                    {
-                        <div class="btnDiv">
-                            <div class="buttons">
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Детайли</a>
-                                <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.Id">
-                                    <input name="wineId" type="hidden" value="@item.Id" />
-                                    <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" />
-                                    <input id="buyBtn" type="submit" value="Поръчай" class="btn btn-primary" />
-                                </form>
-                                <script>
-                                    document.querySelector("form").addEventListener("submit", function (e) {
-                                        e.preventDefault(); // Предотвратява изпращането на стандартната POST заявка
-
-                                        var inputDataValue = document.getElementById("countP").value; // Взема стойността на текстовото поле
-
-                                        window.location.href = '@Url.Action("CreateWithWineId", "Orders")?countP=' + inputDataValue
-                                            + '&wineId=' + @item.Id;
-                                        // Пренасочва към контролера и действието с подадената стойност на текстовото поле като параметър
-                                    });
-                                </script>
-                            </div>
-                        </div>
-                     
-                 
 
 
-                    }
                 </div>
             </div>
         </div>

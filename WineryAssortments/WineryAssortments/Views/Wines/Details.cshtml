@@ -8,56 +8,90 @@
 
 <div class="wineDetails">
     <hr />
-    <div class="wineInformation">   
-        <dl class="row">
+    <div class="wineInformation">
+        <div class="DetailsImage">
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" />
+        </div>
+        <dl>
+            <div class="DetailedWines">
+                <div class="DetailsTxt">
+                    <p>@Html.DisplayFor(model => model.Name)</p>
+                </div>
+                <div class="DetailsPrice">
+                    <p>@Html.DisplayFor(model => model.Price) лв.</p>
+                </div>
+                <div class="DetailsDesc">
+                    <p>@Html.DisplayFor(model => model.Description)</p>
+                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="detailsAdminBtn">
+                        <div class="buttons">
+                            <a asp-action="Edit" asp-route-id="@Model?.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="detailsCustomerBtn">
+                        <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@Model?.Id">
+                            <input name="wineId" type="hidden" value="@Model?.Id" />
+                            <input name="countP" id="ccountDetails" type="number" value="1" style="color:black; font:bold" />
+                            <input id="buyBtnDetails" type="submit" value="Поръчай &#128722;" class="btn btn-primary" />
+
+                        </form>
+
+                    </div>
+                }
+            </div>
+         
+            @*           @if (!User.IsInRole("Admin"))
+            {
+            <div class="btnDiv">
+            <div class="buttons">
+            <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@item.id">
+            <input name="wineId" type="hidden" value="@item.Id" />
+            <input name="countP" id="ccount" type="number" width="4" value="1" style="color:black; font:bold" />
+            <input id="buyBtn" type="submit" value="Поръчай &#128722;" class="btn btn-primary" />
+            </form>
+
+            </div>
+            </div>
+            } *@
+
+
+            @*
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Description)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Description)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.ImageUrl)
+            </dt>
+
+            <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateModified)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Price)
+            @Html.DisplayFor(model => model.DateModified)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.WineCattegories)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.WineCattegories.Name)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ImageUrl)
+            @Html.DisplayNameFor(model => model.WineTypes)
             </dt>
             <dd class="col-sm-10">
-                <img src="@Html.DisplayFor(model => model.ImageUrl)" width="200" />
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DateModified)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DateModified)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.WineCattegories)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.WineCattegories.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.WineTypes)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.WineTypes.Name)
-            </dd>
+            @Html.DisplayFor(model => model.WineTypes.Name)
+            </dd> *@
         </dl>
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>
-    
-   
+  
+
+
 </div>
