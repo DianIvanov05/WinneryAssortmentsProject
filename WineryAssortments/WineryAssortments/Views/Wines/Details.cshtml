@@ -4,31 +4,35 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Детайли за виното</h1>
+<h1 class="WineInfoDetailed">Информация за виното</h1>
 
 <div class="wineDetails">
-    <hr />
     <div class="wineInformation">
         <div class="DetailsImage">
             <img src="@Html.DisplayFor(model => model.ImageUrl)" />
         </div>
-        <dl>
+        
             <div class="DetailedWines">
-                <div class="DetailsTxt">
-                    <p>@Html.DisplayFor(model => model.Name)</p>
-                </div>
-                <div class="DetailsPrice">
-                    <p>@Html.DisplayFor(model => model.Price) лв.</p>
-                </div>
-                <div class="DetailsDesc">
-                    <p>@Html.DisplayFor(model => model.Description)</p>
-                </div>
+            <dl>
+                <dd class="ImportantDetail">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dd>
+                    Вид: @Html.DisplayFor(model => model.WineTypes.Name)
+                </dd>
+                <dd>
+                    Категория: @Html.DisplayFor(model => model.WineCattegories.Name)
+                </dd>            
+                <dd class="DescriptionDetailed">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dd class="DetailPrice">
+                    @Html.DisplayFor(model => model.Price) лв.
+                </dd>
                 @if (User.IsInRole("Admin"))
                 {
-                    <div class="detailsAdminBtn">
-                        <div class="buttons">
-                            <a asp-action="Edit" asp-route-id="@Model?.Id" type="submit" class="btn btn-primary">Редактирай</a>
-                        </div>
+                    <div class="detailsAdminBtn">                      
+                            <a asp-action="Edit" asp-route-id="@Model?.Id" type="submit" class="btn btn-primary">Редактирай</a>                            
                     </div>
                 }
                 else
@@ -38,13 +42,12 @@
                             <input name="wineId" type="hidden" value="@Model?.Id" />
                             <input name="countP" id="ccountDetails" type="number" value="1" style="color:black; font:bold" />
                             <input id="buyBtnDetails" type="submit" value="Поръчай &#128722;" class="btn btn-primary" />
-
                         </form>
-
                     </div>
                 }
+        </dl>
             </div>
-         
+
             @*           @if (!User.IsInRole("Admin"))
             {
             <div class="btnDiv">
@@ -89,9 +92,9 @@
             <dd class="col-sm-10">
             @Html.DisplayFor(model => model.WineTypes.Name)
             </dd> *@
-        </dl>
+       
     </div>
-  
+
 
 
 </div>
