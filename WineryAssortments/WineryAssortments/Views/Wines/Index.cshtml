@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1 id="Heading">Най-добрите асортименти на Винарна „Асорти“</h1>
+<center><h1 id="Heading">Най-добрите асортименти на Винарна „Асорти“</h1></center>
 
 @if (User.IsInRole("Admin"))
 {
@@ -31,12 +31,8 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <div class="btnDivAdmin">
-                                    <div class="buttons">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий виното</a>
-                                    </div>
-
-
+                                    <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий виното</a>
                                 </div>
                             }
                             @if (!User.IsInRole("Admin"))

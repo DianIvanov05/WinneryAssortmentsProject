@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1 class="WineInfoDetailed">Информация за виното</h1>
+<h1 class="WineInfoDetailed">@Html.DisplayFor(model => model.Name)</h1>
 
 <div class="wineDetails">
     <div class="wineInformation">
@@ -14,13 +14,10 @@
         
             <div class="DetailedWines">
             <dl>
-                <dd class="ImportantDetail">
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
-                <dd>
+                <dd class="InfoDetail">
                     Вид: @Html.DisplayFor(model => model.WineTypes.Name)
                 </dd>
-                <dd>
+                <dd class="InfoDetail">
                     Категория: @Html.DisplayFor(model => model.WineCattegories.Name)
                 </dd>            
                 <dd class="DescriptionDetailed">

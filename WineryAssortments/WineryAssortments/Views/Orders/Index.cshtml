@@ -5,11 +5,11 @@
 }
 @if (User.IsInRole("Admin"))
 {
-    <h1>Поръчки</h1>
+    <center class="OrdersHeading"><h1>Поръчки</h1></center>
 }
 @if (!User.IsInRole("Admin"))
 {
-    <h1>Потребителска кошница</h1>
+    <center class="OrdersHeading"><h1>Потребителска кошница </h1></center>
 }
 <table class="table">
     <thead>
@@ -27,18 +27,19 @@
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateModified) 
+                @Html.DisplayNameFor(model => model.DateModified)
             </th>
             <th>Обща цена </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id"><img src="@Html.DisplayFor(modelItem => item.Wines.ImageUrl)" width="65" /></a>
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id"><img src="@Html.DisplayFor(modelItem => item.Wines.ImageUrl)" width="70" height="85" /></a>
+                </td>
                 @if (User.IsInRole("Admin"))
                 {
                     <td>
@@ -47,21 +48,24 @@
                     </td>
                 }
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity) броя
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified) 
-            </td>
-            <td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity) броя
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateModified)
+                </td>
+                <td>
                     @(item.Wines.Price * item.Quantity) лв.
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Редактирай</a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                    </td>
+                }
+
+            </tr>
+        }
     </tbody>
 </table>
