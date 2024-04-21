@@ -26,10 +26,11 @@ body {
     justify-content: center;
     width: 100%;
     height: auto;
-    border-radius: 3px;
+    border-radius:2%;
+    
 }
 
-#imageContainer p {
+#imageContainer h1 {
     position: absolute;
     top: 6%;
     left: 52.5%;
@@ -37,9 +38,11 @@ body {
     padding: 10px 20px;
     color: white;
     font-size: 25px;
-    font-family: 'Comic Sans MS', Times, serif;
+    font-family: cursive;
     transform: translate(-50%, -50%);
-    background-color: black;
+    text-shadow: 3px 3px black;
+
+
 }
 
 .EditForm {
