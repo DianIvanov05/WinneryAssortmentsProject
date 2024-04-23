@@ -194,7 +194,7 @@ hr {
     display: flex;
 }
 
-.HomeHeadings {
+#HomeHeadings {
     color: #640610;
     text-shadow: 1px 1px #44161B, 2px 2px #44161B;
     font-weight: 500
@@ -211,19 +211,30 @@ hr {
         font-family: cursive;
         color: #722F37;
     }
-
+.degustationList li {
+    color: rgb(114, 47, 55);
+    font-family:cursive;
+}
+.degustationText p {
+    font-size: 18px;
+    font-family: cursive;
+    color: #722F37;
+}
 h1 {
     text-align: center;
 }
 
 .degustationImage {
     width: 50%;
+    
 }
+
 
     .degustationImage img {
         max-width: 100%;
         height: auto;
         border-radius: 1%;
+        box-shadow: 2px 2px black;
     }
 
 #degustation {
@@ -420,6 +431,7 @@ h1 {
 
 .col-sm-2 {
     width: 50%;
+
 }
 
 .oldPrice {
@@ -500,6 +512,9 @@ footer {
     color: #424242;
     text-decoration: none;
 }
+    .contactsMainText:hover {
+        color: #424242;
+    }
 
 .contactsText {
     font-family: cursive;
