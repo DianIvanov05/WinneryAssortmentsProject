@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WineryAssortments.Data;
 
 namespace WineryAssortments.Controllers
@@ -20,10 +22,28 @@ namespace WineryAssortments.Controllers
         }
 
         // GET: Wines
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.Wines.Include(w => w.WineCattegories).Include(w => w.WineTypes);
-            return View(await applicationDbContext.ToListAsync());
+            if (searchString.IsNullOrEmpty())
+            {
+                return View(await _context.Wines.Where(x => x.WineCattegoriesId == 1 && x.WineTypesId > 0).ToListAsync());
+            }
+           
+            if (_context.Wines == null)
+            {
+                return Problem("Context is empty");
+            }
+           
+            var wines = from m in _context.Wines select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                wines = wines.Where(s => s.Name.Contains(searchString));
+            }
+            return View(wines.ToList());
+            //var applicationDbContext = _context.Wines
+            //.Include(w => w.WineCattegories)
+            //.Include(w => w.WineTypes);
+            //return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Wines/Details/5

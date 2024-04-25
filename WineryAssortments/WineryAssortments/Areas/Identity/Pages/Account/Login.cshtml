@@ -1,75 +1,94 @@
 ﻿@page
 @model LoginModel
 
-@{
-    ViewData["Title"] = "Вход";
-}
 <style>
     body {
-        background-image: url(https://info.vincarta.com/hubfs/Imported_Blog_Media/AdobeStock_90529653.jpeg);
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
         background-repeat: no-repeat;
+        background-size: cover;
     }
 
-    form {
-        backdrop-filter: blur(8px);
-        border-radius:2%;
+    #image {
+        position: absolute;
+        z-index: -5;
+        -webkit-filter: blur(2px);
+        width: 99%;
+        height: 100%;
     }
 
-        form a {
-            display: flex;
-            justify-content: center;
-            text-decoration: none;
-            color: dodgerblue;
-        }
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family:cursive
+    }
+
+    #login-submit {
+        background-color: #79000E;
+        border-color: #79000E;
+    }
+    
+
+    .col-md-4 {
+        width: 400px;
+        color: #79000E;
+    }
 
 
 </style>
-<center><h1>@ViewData["Title"]</h1></center>
-<div class="center">
 
-    <div>
-        <div class="row">
-            <section>
-                <hr />
-                <form id="account" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                    <div class="form-floating mb-3">
-                        <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username..." />
-                        <label asp-for="Input.UserName" class="form-label">Потребителско име</label>
-                        <span asp-validation-for="Input.UserName" class="text-danger"></span>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                        <label asp-for="Input.Password" class="form-label">Парола</label>
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div>
-                        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Вход</button>
-                    </div>
-                    <div class="checkbox mb-3">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                    <div>
-                        <p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
-                        </p>
-                        <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола</a>
-                        </p>
-                    </div>
-                    
-                   
-                </form>
-             
-            </section>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-        </div>
+<div class="row">
+    <br>  
+        @{
+          ViewData["Title"] = "Вход";
+        }
+
+        <center class="Heading"><h1>@ViewData["Title"]</h1></center>
+        
+    <div class="col-md-4">
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.UserName" class="form-label">Потребителско име</label>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" type="password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password" class="form-label">Парола</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="checkbox mb-3">
+                <label asp-for="Input.RememberMe" class="form-label">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    Запомни ме?
+                </label>
+            </div>
+            <div class="ExtrasLogin">
+                <p>
+                    <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
+                </p>
+                <p>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрация</a>
+                </p>
+            </div>
+            <br>
+            <div>
+                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Вход</button>
+            </div>
+        </form>
     </div>
+    <br>
 </div>
+<br>
+<br>
+   
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

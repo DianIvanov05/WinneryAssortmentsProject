@@ -29,7 +29,20 @@ body {
     border-radius:2%;
     
 }
-
+.searchBtn {
+    background-color: #79000E;
+    font-family: cursive;
+    color: white;
+    width: 130px;
+    border-radius: 5%;
+    border: 1px solid black;
+    border-color: #79000E;
+}
+.AdminNewBtn{
+    display:flex;
+    justify-content:space-evenly;
+    
+}
 #imageContainer h1 {
     position: absolute;
     top: 6%;
@@ -41,8 +54,6 @@ body {
     font-family: cursive;
     transform: translate(-50%, -50%);
     text-shadow: 3px 3px black;
-
-
 }
 
 .EditForm {
