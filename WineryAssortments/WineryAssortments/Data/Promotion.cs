@@ -11,7 +11,7 @@ namespace WineryAssortments.Data
         public Wine Wines { get; set; }
         [DisplayName("Промоция")]
         public int PromotionPercent { get; set; }
-        [DisplayName("Начална дата")]
+        [DisplayName("Начална дата")]     
         public DateTime StartDate { get; set; }
         [DisplayName("Крайна дата")]
         public DateTime EndDate { get; set; }

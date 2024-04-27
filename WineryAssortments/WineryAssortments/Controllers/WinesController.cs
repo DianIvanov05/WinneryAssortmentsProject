@@ -26,13 +26,14 @@ namespace WineryAssortments.Controllers
         {
             if (searchString.IsNullOrEmpty())
             {
-                return View(await _context.Wines.Where(x => x.WineCattegoriesId == 1 && x.WineTypesId > 0).ToListAsync());
+                return View(await _context.Wines.ToListAsync());
             }
            
             if (_context.Wines == null)
             {
-                return Problem("Context is empty");
+                return Problem("Няма вина в асортимента, моля проверете по-късно!");
             }
+            
            
             var wines = from m in _context.Wines select m;
             if (!String.IsNullOrEmpty(searchString))

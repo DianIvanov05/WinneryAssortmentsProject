@@ -21,6 +21,9 @@ body {
     margin-bottom: 60px;
 }
 
+#imageContainer{
+    position:relative;
+}
 #imageContainer img {
     overflow: hidden;
     justify-content: center;
@@ -28,6 +31,27 @@ body {
     height: auto;
     border-radius:2%;
     
+}
+#imageContainer h1{
+    position:absolute;
+    top:0%;
+    left:0%;
+    right:0%;
+    color:white;
+    font-size:30px;
+    font-family:cursive;
+    text-shadow:3px 3px black;
+}
+#imageContainer span{
+    position:absolute;
+    top:10%;
+    bottom:0%;
+    left:0%;
+    right:0%;
+    color:white;
+    font-size:50px;
+    font-family:cursive;
+    text-shadow:3px 3px black;
 }
 .searchBtn {
     background-color: #79000E;
@@ -38,11 +62,19 @@ body {
     border: 1px solid black;
     border-color: #79000E;
 }
-.AdminNewBtn{
-    display:flex;
-    justify-content:space-evenly;
-    
+.AdminNewBtn {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    width: 100%;
 }
+.AdminNewBtn a {
+    background-color: #79000E;
+    border-color: #79000E;
+}
+    .AdminNewBtn a:hover {
+        background-color: #7F1818;
+    }
 #imageContainer h1 {
     position: absolute;
     top: 6%;
@@ -63,6 +95,10 @@ body {
     color: #640610;
     font-weight: bold;
 }
+.detailsAdminBtn a {
+    background-color: #79000E;
+    border-color: #79000E;
+}
 .btnSave {
     display: flex;
     justify-content: center;
@@ -72,7 +108,6 @@ body {
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-
 }
     .btnSave input[type=submit] {
         width: 550px;

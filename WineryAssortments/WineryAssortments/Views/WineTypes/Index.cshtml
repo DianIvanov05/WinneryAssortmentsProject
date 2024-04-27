@@ -2,15 +2,35 @@
 
 @{
     ViewData["Title"] = "Index";
+} 
+<style>
+ body{
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+ }
+    .information{
+        font-family:cursive;
+        background-color:lightgray;
+        
+    }
+    tbody{
+        background-color:white;
+        font-family: cursive;
+    }
+</style>
+
+<center class="Heading"><h1>Видове вина</h1></center>
+@if (User.IsInRole("Admin"))
+{
+    <div class="AdminNewBtn">
+        <a asp-action="Create" class="btn btn-primary">Добави нов вид вино</a>
+    </div>
+
 }
-
-<h1>Видове вина</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<br />
+<table class="table table-hover table-bordered">
+    <thead class="information">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -18,10 +38,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.DateModified)
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    Опции
+                </th>
+                
+            }
+          
         </tr>
     </thead>
-    <tbody>
+    <tbody >
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -30,12 +57,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateModified)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="ForeignBtns">
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Редактирай</a> 
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Детайли</a> 
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Изтрий</a>
             </td>
         </tr>
 }
-    </tbody>
+    
 </table>

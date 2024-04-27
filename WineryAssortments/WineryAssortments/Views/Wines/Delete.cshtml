@@ -4,58 +4,50 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Изтриване на вино</h1>
-<h3>Наистина ли искате да изтриете това вино?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateModified)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateModified)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WineCattegories)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WineCattegories.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WineTypes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WineTypes.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<center class="Heading"><h1>Изтриване на вино</h1></center>
+<center><h3>Наистина ли искате да изтриете това вино?</h3></center>
+<div class="wineDetails">
+    <div class="wineInformation">
+        <div class="DetailsImage">
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" />
+        </div>
+
+        <div class="DetailedWines">
+            <dl>
+                <dd class="InfoDetail">
+                    Вид: @Html.DisplayFor(model => model.WineTypes.Name)
+                </dd>
+                <dd class="InfoDetail">
+                    Категория: @Html.DisplayFor(model => model.WineCattegories.Name)
+                </dd>
+                <dd class="DescriptionDetailed">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dd class="DetailPrice">
+                    @Html.DisplayFor(model => model.Price) лв.
+                </dd>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div >
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Изтрий" class="btn btn-danger" /> 
+                            <a class="btn btn-primary" asp-action="Index">Назад към вината</a>
+                        </form>
+                    </div>
+                }
+         
+            </dl>
+        </div>
+
+
+
+    </div>
+
+
+
 </div>
+
+    
+ 
+
