@@ -59,18 +59,17 @@
                         <a asp-action="Edit" asp-route-id="@Model?.Id" type="submit" class="btn btn-primary">Редактирай</a>
                     </div>
                 }
-                else
+   @*              else
                 {
                     <div class="detailsCustomerBtn">
-                        <form method="get" asp-controller="Orders" asp-action="CreateWithPromotionId" asp-route-wineId="@Model?.Id" asp-route-promotionId ="@Model?.Id">
+                        <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@Model?.Id" >
                             <input name="wineId" type="hidden" value="@Model?.Id" />
-                            <input name="promotionId" type="hidden" value="@Model?.Id" />
                             <input name="countP" id="ccountDetails" type="number" value="1" style="color:black; font:bold" />
                             <input id="buyBtnDetails" type="submit" value="Поръчай &#128722;" class="btn btn-primary" />
                         </form>
                     </div>
                     
-                }
+                } *@
             </dl>
         </div>
 
