@@ -3,12 +3,77 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<style>
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-<h1>Изтрий вид вино</h1>
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family: cursive;
+    }
 
-<h3>Наистина ли искате да изтриете този вид вино?</h3>
+    .col-md-4 {
+        width: 400px;
+        font-family: cursive;
+    }
+
+    .form-control {
+        font-family: cursive;
+    }
+
+    .HeadingDelete {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
+
+    .btnSubmit {
+        padding: 10px;
+        background-color: #79000E;
+        border-color: #79000E;
+    }
+
+    .DeleteBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .DeleteBtn a {
+            background-color: #79000E;
+            border-color: #79000E;
+            margin-left: 20px;
+        }
+        .DeleteBtn a:hover{
+                background-color: #6F2929;
+        }
+h3{
+        color: #7F0E0E;
+    font-family:cursive;
+        font-weight: 600;
+        text-shadow: 1px 1px black;
+    }
+
+</style>
+<h1 class="HeadingDelete">Изтрий вид вино</h1>
+
+<center><h3>Наистина ли искате да изтриете този вид вино?</h3></center>
 <div>
-    <h4>WineType</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,10 +89,13 @@
             @Html.DisplayFor(model => model.DateModified)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    <div class="DeleteBtn">
+        <div class="form-group">
+            <a asp-action="Delete" class="btn btn-primary">Изтрий вида вино</a>
+        </div>
+        <div class="BackHome">
+            <a asp-action="Index" class="btn btn-primary">Назад</a>
+        </div>
+    </div>
 </div>

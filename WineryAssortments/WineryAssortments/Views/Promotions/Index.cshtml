@@ -4,83 +4,37 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Промоции на вино</h1>
+<center class="Heading">
+    <h1>Промоции на вино</h1>
+</center>
 
-@if (User.IsInRole("Admin"))
-{
-    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай нова промоция</a></div></center>
+<div class="AdminNewBtn">
+    @if (User.IsInRole("Admin"))
+    {
+        <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай нова промоция</a></div></center>
 
-}
+    }
+</div>
 
-@* <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Wines)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wines.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PromotionPercent)
-            </th>
-            <th>
-                Нова цена
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateModified)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Wines.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Wines.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PromotionPercent)
-                </td>
-                <td>
-                    @(item.Wines.Price - item.Wines.Price / 100 - item.PromotionPercent) лв.
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateModified)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table> *@
+<style>
+    .col-sm-2{
+        font-family: cursive;
+        color: #722F37;
+        font-weight: bold;
+    }
+    .col-sm{
+        color: #722F37;
+        font-family:cursive;
+    }
+</style>
 <hr />
 <div class="wines-container">
     @foreach (var item in Model)
     {
         <div class="wines">
             <span class="Promotion">- @Html.DisplayFor(modelItem => item.PromotionPercent) %</span>
-            <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span>          
-            <img src="@(item.Wines.ImageUrl)" />
+            <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span>
+            <a asp-action="Details" asp-route-id="@item.Id"><div class="wineImg"><img src="@(item.Wines.ImageUrl)" /></div></a>
             <div class="wine-description">
                 <div>
                     <div>
@@ -122,11 +76,10 @@
                         <div class="btnDiv">
                             <div class="buttons">
                                 <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
-                                <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
                                 <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий промоцията</a>
                             </div>
                         </div>
-                    
+
                     }
 
                 </div>

@@ -3,10 +3,77 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<style>
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-<h1>Edit</h1>
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family: cursive;
+    }
 
-<h4>Promotion</h4>
+    .col-md-4 {
+        width: 400px;
+        font-family: cursive;
+    }
+
+    .form-control {
+        font-family: cursive;
+    }
+
+    .HeadingPromotion {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
+
+    .btnSubmit {
+        padding: 10px;
+        background-color: #79000E;
+        border-color: #79000E;
+    }
+
+    .EditBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .EditBtn a {
+            background-color: #79000E;
+            border-color: #79000E;
+        }
+
+        .EditBtn input[type=submit] {
+            background-color: #79000E;
+            border-color: #79000E;
+        }
+
+        .EditBtn input:hover {
+            background-color: #6F2929;
+        }
+
+        .EditBtn a:hover {
+            background-color: #6F2929;
+        }
+</style>
+<h1 class="HeadingPromotion">Редактирай информацията за промоцията</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,7 +81,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="WinesId" class="control-label"></label>
+                <label asp-for="WinesId" class="control-label">Промоционално вино</label>
                 <select asp-for="WinesId" class="form-control" asp-items="ViewBag.WinesId"></select>
                 <span asp-validation-for="WinesId" class="text-danger"></span>
             </div>
@@ -38,16 +105,18 @@
                 <input asp-for="DateModified" class="form-control" />
                 <span asp-validation-for="DateModified" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="EditBtn">
+                <div class="form-group">
+                    <input type="submit" value="Запази промените" class="btn btn-primary" />
+                </div>
+                <div class="BackHome">
+                    <a asp-action="Index" class="btn btn-primary">Назад</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

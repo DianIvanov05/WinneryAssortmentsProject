@@ -3,28 +3,97 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    .HeadingEdit {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
 
-<h1>Детайли за категория на вино</h1>
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family: cursive;
+        
+    }
+
+    .col-md-4 {
+        width: 400px;
+        font-family: cursive;
+    }
+
+    .form-control {
+        font-family: cursive;
+    }
+
+    .HeadingDetails {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
+
+    .DetailsBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .DetailsBtn a {
+            background-color: #79000E;
+            border-color: #79000E;
+            margin-left: 20px;
+        }
+
+            .DetailsBtn a:hover {
+                background-color: #6F2929;
+            }
+.col-sm-2{
+    width:100%;
+    display:flex;   
+        justify-content: center;
+}
+</style>
+<h1 class="HeadingDetails">Детайли за категория на вино</h1>
 <div>
-    <h4>WineCattegory</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DateModified)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateModified)
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="DetailsBtn">
+    <div class="form-group">
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Запази промените</a>
+    </div>
+    <div class="BackHome">
+        <a asp-action="Index" class="btn btn-primary">Назад</a>
+    </div>
 </div>

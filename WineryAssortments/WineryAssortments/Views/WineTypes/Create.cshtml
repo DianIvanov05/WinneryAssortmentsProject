@@ -3,10 +3,73 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-<h1>Create</h1>
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family: cursive;
+    }
 
-<h4>WineType</h4>
+    .col-md-4 {
+        width: 400px;
+        font-family: cursive;
+    }
+
+    .form-control {
+        font-family: cursive;
+    }
+
+    .HeadingCreate {
+        font-family: cursive;
+        font-weight: 900;
+        color: #79000E;
+        text-shadow: 1px 1px black
+    }
+
+    .btnSubmit {
+        padding: 10px;
+        background-color: #79000E;
+        border-color: #79000E;
+    }
+
+    .AddBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .AddBtn a {
+            background-color: #79000E;
+            border-color: #79000E;
+        }
+
+        .AddBtn input[type=submit] {
+            background-color: #79000E;
+            border-color: #79000E;
+        }
+
+    .AddBtn a:hover {
+        background-color: #6F2929;
+    }
+</style>
+<center class="HeadingCreate"><h1>Добави нов вид вино</h1></center>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,16 +85,19 @@
                 <input asp-for="DateModified" class="form-control" />
                 <span asp-validation-for="DateModified" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="AddBtn">
+                <div class="form-group">
+                    <a asp-action="Create" class="btn btn-primary">Добави виното</a>
+                </div>
+                <div class="BackHome">
+                    <a asp-action="Index" class="btn btn-primary">Назад</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

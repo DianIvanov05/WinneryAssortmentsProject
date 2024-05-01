@@ -86,6 +86,22 @@ namespace WineryAssortments.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> CreateWithPromotionId(int wineId, int countP, decimal newprice, int promotionId)
+        {
+            var currentWine = await _context.Wines.FirstOrDefaultAsync(z => z.Id == wineId);
+            var currentPromotion = await _context.Promotions.FirstOrDefaultAsync(p => p.Id == promotionId);
+            Order order = new Order();
+            //order.ProductsId = productId;
+            // productId = order.ProductsId;
+            order.WinesId = wineId;
+            order.Quantity = countP;
+            order.CustomersId = _userManager.GetUserId(User);
+            var price = countP * currentWine.Price - currentWine.Price/100 * currentPromotion.PromotionPercent;
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // POST: Orders/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

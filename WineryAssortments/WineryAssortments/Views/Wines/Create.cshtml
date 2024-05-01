@@ -37,8 +37,8 @@
     .HeadingCreate {
         font-family: cursive;
         font-weight: 900;
-        color: #56050E;
-        text-shadow: #392224;
+        color: #79000E;
+        text-shadow: 1px 1px black
     }
 
     .btnSubmit {
@@ -64,6 +64,12 @@
             background-color: #79000E;
             border-color: #79000E;
     }
+    .AddBtn a:hover{
+           background-color: #6F2929;
+    }
+        .BackBtn a:hover {
+            background-color: #6F2929;
+        }
   
 </style>
 <h1 class="HeadingCreate">Добави ново вино</h1>
@@ -107,13 +113,12 @@
             </div>
             <div class="AddBtn">
                 <div class="form-group" >
-                    <input type="submit" value="Добави виното" class="btn btn-primary" />
+                    <a asp-action="Create" class="btn btn-primary">Добави виното</a>
                 </div>
                 <div class="BackHome">
                     <a asp-action="Index" class="btn btn-primary">Назад</a>
                 </div>
-            </div>
-         
+            </div>      
         </form>
     </div>
 </div>
