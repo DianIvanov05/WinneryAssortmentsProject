@@ -17,6 +17,22 @@
     transform: rotate(17.5deg);
     width:70px;
     }
+
+    .PromotionDetailed {
+        animation: pulse 2s infinite;
+    }
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 red;
+        }
+
+        50% {
+            box-shadow: 0 0 0 5px transparent;
+        }
+
+    
+
+    }
 </style>
 
 <h1 class="WineInfoDetailed">@Html.DisplayFor(model => model.Wines.Name)</h1>
@@ -59,7 +75,21 @@
                         <a asp-action="Edit" asp-route-id="@Model?.Id" type="submit" class="btn btn-primary">Редактирай</a>
                     </div>
                 }
-   @*              else
+                else
+                {
+                    <div class="detailsCustomerBtn">
+                        <form name="f" method="get" asp-controller="Orders" asp-action="CreateWithPromotionId" asp-route-promotionId="@Model.Id" asp-route-countP="1" asp-route-percent="100">
+                        
+                                <input name="promotionId" type="hidden" value="@Model.Id" />
+                                <input name="percent" type="hidden" value="@Model.PromotionPercent" />
+                            <input name="countP" id="ccountDetails" type="number" value="1" style="color:black; font:bold" />
+                            <input id="buyBtnDetails" type="submit" class="btn btn-primary" value="Поръчай &#128722;"  />
+                           
+                        </form>
+                    </div>
+    
+                }
+                @*              else
                 {
                     <div class="detailsCustomerBtn">
                         <form method="get" asp-controller="Orders" asp-action="CreateWithWineId" asp-route-wineId="@Model?.Id" >

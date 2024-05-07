@@ -86,7 +86,49 @@ namespace WineryAssortments.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> CreateProm(int wineId, int countP, decimal percent)
+        {
+            Order order = new Order();
+            order.WinesId = wineId;
+            order.Quantity = countP;
+            order.CustomersId = _userManager.GetUserId(User);
+           
+            //order.RegisterOn = DateTime.Now;
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> CreateWithPromotionId(int promotionId, int countP, decimal percent)
+        {
+            var currentPromotion = await _context.Promotions.FirstOrDefaultAsync(p => p.Id == promotionId);
 
+            if (currentPromotion == null)
+            {
+                // Обработка на грешка, ако промоцията не е намерена
+                return NotFound();
+            }
+
+            var currentWine = await _context.Wines.FirstOrDefaultAsync(z => z.Id == currentPromotion.WinesId);
+
+            if (currentWine == null)
+            {
+                // Обработка на грешка, ако продуктът не е намерен
+                return NotFound();
+            }
+
+            decimal price = 0;
+
+            if (percent == 100)
+            {
+                price = Math.Round(countP * currentWine.Price, 2);
+            }
+            else
+            {
+                price = Math.Round(countP * currentWine.Price - countP * currentWine.Price / 100 * percent, 2);
+            }
+
+            return await CreateProm(currentPromotion.WinesId, countP, price);
+        }
 
 
         // POST: Orders/Create

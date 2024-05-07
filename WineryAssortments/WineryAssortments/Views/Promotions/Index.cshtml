@@ -17,6 +17,7 @@
 </div>
 
 <style>
+
     .col-sm-2{
         font-family: cursive;
         color: #722F37;
@@ -26,6 +27,21 @@
         color: #722F37;
         font-family:cursive;
     }
+        .Promotion {
+        animation: pulse 2s infinite;
+       
+    }
+
+    @@keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 red;
+
+        }
+        50% {
+            box-shadow: 0 0 0 10px transparent;
+        }
+    }
+    
 </style>
 <hr />
 <div class="wines-container">
@@ -35,7 +51,7 @@
             <span class="Promotion">- @Html.DisplayFor(modelItem => item.PromotionPercent) %</span>
             <span class="wine-name">@Html.DisplayFor(modelItem => item.Wines.Name)</span>
             <a asp-action="Details" asp-route-id="@item.Id"><div class="wineImg"><img src="@(item.Wines.ImageUrl)" /></div></a>
-            <div class="wine-description">
+          <div class="wine-description">
                 <div>
                     <div>
                         <dl class="row" style="position: relative;">
