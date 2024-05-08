@@ -3,43 +3,136 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<style>
+    .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 3px 3px 3px 1px;
+        width: 360px;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.7);
+        margin-left: auto;
+        margin-right: auto;
+        font-family: cursive;
+    }
 
-<h1>Изтрий поръчка</h1>
+    .col-sm-10 {
+        display: flex;
+        justify-content: center;
+    }
 
-<h3>Наистина ли искате да изтриете тази поръчка?</h3>
+    .col-sm-2 {
+        display: flex;
+        justify-content: center;
+    }
+
+    .col-md-4 {
+        width: 400px;
+        font-family: cursive;
+    }
+
+    .form-control {
+        font-family: cursive;
+    }
+
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .HeadingDetails {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
+
+    .DeleteBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .DeleteBtn input[type=submit] {
+            background-color: #79000E;
+            border-color: #79000E;
+            margin-left: 20px;
+        }
+
+            .DeleteBtn input[type=submit]:hover {
+                background-color: #6F2929;
+            }
+            .BackHome a{
+        background-color: #79000E;
+        border-color: #79000E;
+        margin-left: 20px;
+            }
+
+    .BackHome a:hover{
+        background-color: #6F2929;
+    }
+</style>
+
+<center class="Heading"><h1>Изтриване на поръчка</h1></center>
+
+<center><h3>Наистина ли искате да изтриете тази поръчка?</h3></center>
 <div>
-    <h4>Order</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Wines)
+        <dt class="col-sm-2">
+            Поръчано вино:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Wines.Id)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Wines.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customers)
+        <dt class="col-sm-2">
+            Поръчано от:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customers.Id)
+        <dd class="col-sm-10">
+            @Model.Customers.FirstName @Model.Customers.LastName
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Quantity) броя
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateModified)
+        <dt class="col-sm-2">
+            Обща цена:
+
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+            @(Model.Wines.Price * Model.Quantity) лв.
+        </dd>
+
+        <dt class="col-sm-2">
+            Дата на поръчка:
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DateModified)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="DeleteBtn">
+            <div class="form-group">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Изтрий" class="btn btn-danger" />
+                </form>
+            </div>
+            <div class="BackHome">
+                <a class="btn btn-primary" asp-action="Index">Назад към вината</a>
+            </div>
+
+
+        </div>
+    }
 </div>

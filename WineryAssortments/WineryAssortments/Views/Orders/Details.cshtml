@@ -3,9 +3,70 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    .row {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px 1px;
+    width: 360px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-left: auto;
+    margin-right: auto;
+    font-family: cursive;
+    }
+    .col-sm-10{
+        display: flex;
+        justify-content: center;
+    }
+    .col-sm-2{
+        display: flex;
+        justify-content: center;
+    }
+    .col-md-4{
+        width: 400px;
+        font-family: cursive;
+    }
 
-<h1 class="OrdersHeading">Детайли за поръчката</h1>
+    .form-control {
+        font-family: cursive;
+    }
 
+    body {
+        background-image: url(https://eu2iok58o6p.exactdn.com/wp-content/uploads/2023/10/pexels-skitterphoto-2101186.jpg?strip=all&lossy=1&ssl=1);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .HeadingDetails {
+        font-family: cursive;
+        font-weight: 900;
+        color: #770C0C;
+        text-shadow: 1px 1px black;
+    }
+
+    .DetailsBtn {
+        border-color: #79000E;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .DetailsBtn a {
+            background-color: #79000E;
+            border-color: #79000E;
+            margin-left: 20px;
+        }
+
+            .DetailsBtn a:hover {
+                background-color: #6F2929;
+            }
+</style>
+<h1 class="HeadingDetails">Детайли за поръчката</h1>
 <div>
     <hr />
     <dl class="row">
@@ -19,13 +80,19 @@
             @Html.DisplayNameFor(model => model.Customers)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customers.UserName)
+            @Model.Customers.FirstName @Model.Customers.LastName
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
+            @Html.DisplayFor(model => model.Quantity) броя
+        </dd>
+        <dt class="col-sm-2">
+            Обща цена
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Wines.Price * Model.Quantity) лв.
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateModified)
@@ -35,7 +102,15 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (User.IsInRole("Admin"))
+{
+    <div class="DetailsBtn">
+        <div class="form-group">
+            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Запази промените</a>
+        </div>
+        <div class="BackHome">
+            <a asp-action="Index" class="btn btn-primary">Назад</a>
+        </div>
+    </div>
+}
+

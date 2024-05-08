@@ -292,7 +292,7 @@ h1 {
         font-size: 18px;
     }
 
-.contactUs{
+/*.contactUs{
     display:flex;
     justify-content:center;
 }
@@ -375,14 +375,14 @@ h1 {
         backdrop-filter: blur(4px);
         width: 56%;
         height: auto;
-    }
+    }*/
 
-    .contactUs .ThirdForm iframe {
+ /*   .contactUs .ThirdForm iframe {
         height: 100%;
         width: 100%;
         left: 0;
         top: 0;
-    }
+    }*/
 
 .Heading {
     color: #722F37;
