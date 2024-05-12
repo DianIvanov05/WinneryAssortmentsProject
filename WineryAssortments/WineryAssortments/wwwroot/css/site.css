@@ -163,7 +163,7 @@ hr {
 
 .WineInfoDetailed {
     color: #722F37;
-    text-shadow: 1px 1px #601F20, 2px 2px #601F20;
+    text-shadow: 1px 1px #601F20, 2px 2px black;
     font-weight: 750;
 }
 
@@ -544,7 +544,7 @@ hr {
 
 
 footer {
-    background-color: #E1E1E1;
+    background-color: #84222C;
     border-top: 1px solid black;
     display: flex;
     justify-content: space-evenly;
@@ -555,22 +555,26 @@ footer {
 }
 
 .InfoTitle {
-    color: black;
+    color: white;
+    text-shadow: 2px 2px black;
     text-justify: auto;
-    font-size: 120%
+    font-size: 120%;
+    font-family: cursive;
 }
 
 .contactsMainText {
     font-family: cursive;
-    color: #424242;
+    color: white;
+    text-shadow:1px 1px black;
     text-decoration: none;
 }
     .contactsMainText:hover {
-        color: #424242;
+        color:aliceblue;
     }
 
 .contactsText {
     font-family: cursive;
+    color:white;
 }
 
 .socialMediaImg {

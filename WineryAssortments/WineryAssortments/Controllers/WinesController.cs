@@ -38,7 +38,7 @@ namespace WineryAssortments.Controllers
             var wines = from m in _context.Wines select m;
             if (!String.IsNullOrEmpty(searchString))
             {
-                wines = wines.Where(s => s.Name.Contains(searchString));
+                wines = wines.Where(s => s.Name.Contains(searchString) || s.WineTypes.Name.Contains(searchString));
             }
             return View(wines.ToList());
             //var applicationDbContext = _context.Wines
