@@ -24,15 +24,14 @@ body {
 #imageContainer{
     position:relative;
 }
-#imageContainer img {
+.swiffy-slider img {
     overflow: hidden;
     justify-content: center;
     width: 100%;
     height: auto;
-    border-radius:2%;
-    
+    border-radius: 2%;
 }
-#imageContainer h1{
+.swiffy-slider h1{
     position:absolute;
     top:0%;
     left:0%;
@@ -42,16 +41,16 @@ body {
     font-family:cursive;
     text-shadow:3px 3px black;
 }
-#imageContainer span{
-    position:absolute;
-    top:10%;
-    bottom:0%;
-    left:0%;
-    right:0%;
-    color:white;
-    font-size:50px;
-    font-family:cursive;
-    text-shadow:3px 3px black;
+.swiffy-slider span {
+    position: absolute;
+    top: 6%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    color: white;
+    font-size: 50px;
+    font-family: cursive;
+    text-shadow: 3px 3px black;
 }
 .searchBtn {
     background-color: #79000E;
@@ -79,7 +78,7 @@ body {
 #imageContainer h1 {
     position: absolute;
     top: 6%;
-    left: 52.5%;
+    left: 50%;
     text-align: center;
     padding: 10px 20px;
     color: white;

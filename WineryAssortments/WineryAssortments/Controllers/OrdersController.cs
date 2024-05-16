@@ -86,6 +86,7 @@ namespace WineryAssortments.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
         public async Task<IActionResult> CreateProm(int wineId, int countP, decimal percent)
         {
             Order order = new Order();

@@ -1,18 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
 <div class="text-center">
-    <div id="imageContainer">
-        <img src="https://assets.architecturaldigest.in/photos/6008342bb3d78db39997cec9/16:9/w_2560%2Cc_limit/Let-Awakening-inspire-your-wine-selection-1366x768.jpg" />
-            <h1>
-                Добре дошли във винарна 
-            </h1>
+    <div class="swiffy-slider">
+        <ul class="slider-container">
+            <li><img src="https://assets.architecturaldigest.in/photos/6008342bb3d78db39997cec9/16:9/w_2560%2Cc_limit/Let-Awakening-inspire-your-wine-selection-1366x768.jpg" style="max-width: 100%;height: auto;border-radius: 2%;"></li>
+            <li><img src="~/images/wines.jpg" style="max-width: 100%;height: auto;border-radius: 2%;"></li>
+            <li><img src="~/images/wines4.jpg" style="max-width: 100%;height: auto; border-radius: 2%;"></li>
+           
+        </ul>
+        <h1>
+            Добре дошли във винарна
+        </h1>
         <span>„Асорти“</span>
+        <button type="button" class="slider-nav"></button>
+        <button type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+
+        </div>
+     
     </div>
-   
+    <div id="imageContainer">
+        @*  <img src="https://assets.architecturaldigest.in/photos/6008342bb3d78db39997cec9/16:9/w_2560%2Cc_limit/Let-Awakening-inspire-your-wine-selection-1366x768.jpg" /> *@
+    
+        
+    </div>
+
 </div>
-<hr id="AboutUs"/>
+<hr id="AboutUs" />
 <h1 id="HomeHeadings">За нас</h1>
 <div id="aboutUsContainer">
     <div class="aboutusImage">
